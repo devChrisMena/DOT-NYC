@@ -1,3 +1,4 @@
+from ast import Str
 import csv
 from getpass import getpass
 from time import sleep
@@ -7,6 +8,7 @@ from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver import ActionChains
 import datetime
+
 
 def getPostData(post):
     """
@@ -25,18 +27,25 @@ def getPostData(post):
         By.XPATH, './/span[@class="_7UhW9   xLCgt      MMzan   KV-D4            se6yk       T0kll "]').text
     time = post_content.find_element(
         By.XPATH, './/time[@class="_1o9PC"]').get_attribute('datetime')
+    time = time[:10]
     # close post
     post_content.find_element(By.XPATH, './/button[@class="wpO6b  "]').click()
     sleep(1)
     content = (username, comment, time)
     return content
 
+def formatTime(data_time):
+    """
+    Function formats a given date 
+    """
+    dt = datetime.datetime(int(data_time[:4]), int(data_time[5:7]), int(data_time[8:]))
+    return dt
+
 
 # create driver windows
-driver = Chrome()
-sleep(5)
+#driver = Chrome()
 # mac
-#driver = Chrome('/Users/christophermena/Downloads/chromedriver')
+driver = Chrome('/Users/christophermena/Downloads/chromedriver')
 driver.get('https://www.instagram.com/')
 sleep(5)
 username = driver.find_element(By.XPATH, '//input[@name="username"]')
@@ -76,9 +85,8 @@ data = []
 post_ids = set()
 last_position = driver.execute_script('return window.pageYOffset;')
 scrolling = True
-current_datetime = datetime.datetime.now()
-
-
+target_datetime = datetime.datetime.now(
+) - datetime.timedelta(days=int(input('Enter number of days: ')))
 
 while scrolling:
     # load post
@@ -98,9 +106,16 @@ while scrolling:
                 # create unique id
                 post_id = ''.join(comment)
                 # if id not in post_ids
+                date = comment[2]
+                date_pass = not(target_datetime > formatTime(date))
                 if post_id not in post_ids:
                     post_ids.add(post_id)
                     data.append(comment)
+                if date_pass:
+                    continue
+                else:
+                    scrolling = False
+                    break
     # scroll attempt
     scroll_attempt = 0
     while True:
@@ -120,3 +135,10 @@ while scrolling:
         else:
             last_position = current_position
             break
+
+# saving data
+with open('ig_data.csv', 'w', newline='', encoding='utf-8') as f:
+    header = ['UserName', 'Comments', 'Time']
+    writer = csv.writer(f)
+    writer.writerow(header)
+    writer.writerows(data)

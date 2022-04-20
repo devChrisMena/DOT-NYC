@@ -6,6 +6,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
+from datetime import datetime, timedelta
 
 def getTweetData(card) -> Tuple:
     """
