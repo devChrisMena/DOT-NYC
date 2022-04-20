@@ -47,13 +47,13 @@ my_password = 'Criss195!'
 password = driver.find_element(by=By.XPATH, value='//input[@name="password"]')
 password.send_keys(my_password)
 password.send_keys(Keys.RETURN)
-sleep(5)
+sleep(2)
 
 # searching
 search = driver.find_element(by=By.XPATH, value='//input[@placeholder="Search Twitter"]')
 search.send_keys('@DOT')
 search.send_keys(Keys.RETURN)
-sleep(5)
+sleep(2)
 
 # naviagte to lastest tap
 driver.find_element(by=By.LINK_TEXT, value='Latest').click()
@@ -96,8 +96,6 @@ while scrolling:
         else:
             last_position = current_position
             break
-
-driver.close()
 
 # saving data
 with open('tweet_data.csv', 'w', newline='', encoding='utf-8') as f:
