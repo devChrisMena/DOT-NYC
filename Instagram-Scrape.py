@@ -1,15 +1,19 @@
-from ast import Str
-import csv
-from getpass import getpass
-from time import sleep
+
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
+from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, TimeoutException
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver import ActionChains
-import datetime
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from ast import Tuple
+from getpass import getpass
+from time import sleep
+import csv
+import selenium 
 
-
+# Constants and Functions
+DELAY = 15
 def getPostData(post):
     """
     Extract data from instagram data.
@@ -34,72 +38,84 @@ def getPostData(post):
     content = (username, comment, time)
     return content
 
+def loadElement(by, path, browser):
+    """
+    Given a By and Path, load element
+    """
+    try:
+        element = WebDriverWait(browser, DELAY).until((EC.presence_of_element_located((by, path))))
+        print('Page is read!')
+        return element
+    except TimeoutException:
+        print('Page too long to load ')
+        return None
+
+def loadElements(by, path, browser):
+    """
+    Given a By and Path, load element
+    """
+    try:
+        element = WebDriverWait(browser, DELAY).until((EC.presence_of_all_elements_located((by, path))))
+        print('Page is read!')
+        return element
+    except TimeoutException:
+        print('Page too long to load ')
+        return None
+
 def formatTime(data_time):
     """
     Function formats a given date 
     """
-    dt = datetime.datetime(int(data_time[:4]), int(data_time[5:7]), int(data_time[8:]))
+    dt = datetime.datetime(int(data_time[:4]), int(
+        data_time[5:7]), int(data_time[8:]))
     return dt
 
 
 # create driver windows
-#driver = Chrome()
+driver = Chrome()
 # mac
-driver = Chrome('/Users/christophermena/Downloads/chromedriver')
+#driver = Chrome('/Users/christophermena/Downloads/chromedriver')
 driver.get('https://www.instagram.com/')
-sleep(5)
-username = driver.find_element(By.XPATH, '//input[@name="username"]')
+
+# Login
+username = loadElement(By.XPATH, '//input[@name="username"]', driver)
 username.send_keys('iamcriss_1')
-password = driver.find_element(By.XPATH, '//input[@name="password"]')
+password = loadElement(By.XPATH, '//input[@name="password"]', driver)
 password.send_keys('titi020696')
 password.send_keys(Keys.RETURN)
-sleep(5)
+save_btn = loadElement(By.XPATH, '//div[@class="cmbtv"]', driver).click()
+notification_btn = loadElement(By.XPATH, '//div[@class="mt3GC"]', driver).click()
 
-save_btm = driver.find_element(By.XPATH, '//div[@class="cmbtv"]').click()
-sleep(5)
-
-notification_btn = driver.find_element(
-    By.XPATH, '//div[@class="mt3GC"]').click()
-
-search = driver.find_element(By.XPATH, '//div[@class=" cTBqC"]').click()
-sleep(3)
-
-search = driver.find_element(By.XPATH, '//input[@placeholder="Search"]')
-
+# Search
+search = loadElement(By.XPATH, '//div[@class=" cTBqC"]', driver).click()
+search = loadElement(By.XPATH, '//input[@placeholder="Search"]', driver)
 search.send_keys('#nycdot')
-
 search.send_keys(Keys.RETURN)
-sleep(5)
+sleep(10)
 
-dotpage = driver.find_element(
-    By.XPATH, '//a[@href="/explore/tags/nycdot/"]').click()
-sleep(5)
+# Page
+dotpage = loadElement(By.XPATH, '//a[@href="/explore/tags/nycdot/"]', driver).click()
+pages = loadElement(By.XPATH, '//article[@class="KC1QD"]', driver)
+recent_pages = loadElements(By.XPATH, './div[2]/div[1]', pages)
 
-pages = driver.find_element(By.XPATH, '//article[@class="KC1QD"]')
-sleep(3)
-
-recent_pages = pages.find_element(By.XPATH, './div[2]/div[1]')
-sleep(3)
-
+# Data
 data = []
 post_ids = set()
 last_position = driver.execute_script('return window.pageYOffset;')
 scrolling = True
 target_datetime = datetime.datetime.now(
-) - datetime.timedelta(days=int(input('Enter number of days: ')))
+) - datetime.timedelta(days=int(input('Enter number of days: ') or '30'))
 
+# Scraping
 while scrolling:
     # load post
-    cards = recent_pages.find_elements(
-        By.XPATH, './/div[@class="Nnq7C weEfm"]')
+    cards = loadElements(By.XPATH, './/div[@class="Nnq7C weEfm"]', recent_pages)
     for card in cards[-15:]:
         try:
-            posts = card.find_elements(
-                By.XPATH, './/div[@class="v1Nh3 kIKUG _bz0w"]')
+            posts = loadElements(By.XPATH, './/div[@class="v1Nh3 kIKUG _bz0w"]', card)
         except StaleElementReferenceException:
             print('Error')
             break
-
         for post in posts:
             comment = getPostData(post)
             if comment:
