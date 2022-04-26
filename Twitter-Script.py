@@ -89,7 +89,7 @@ username = loadElement(By.XPATH, '//input[@name="text"]', driver)
 username.send_keys('iamcriss_1')
 username.send_keys(Keys.RETURN)
 
-my_password = 'Criss195!'
+my_password = ''
 password = loadElement(By.XPATH, '//input[@name="password"]', driver)
 password.send_keys(my_password)
 password.send_keys(Keys.RETURN)
