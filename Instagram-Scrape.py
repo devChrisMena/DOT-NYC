@@ -111,7 +111,7 @@ for strip in strips_posts:
         post_content = loadElement(By.XPATH, '//div[@class="RnEpo   _Yhr4     "]', driver)
         close_post = loadElement(By.XPATH, './div[1]/button', post_content)
         post_texts = loadElements(By.XPATH, './/ul[@class="Mr508 "]', post_content)
-        loadMoreComments('button[@class="wpO6b  "]', post_content)
+        #loadMoreComments('button[@class="wpO6b  "]', post_content)
         if post_texts != None:
             for text_data in post_texts:
                 data.append(getPostData(text_data))
