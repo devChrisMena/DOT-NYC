@@ -89,7 +89,7 @@ username = loadElement(By.XPATH, '//input[@name="text"]', driver)
 username.send_keys('iamcriss_1')
 username.send_keys(Keys.RETURN)
 
-my_password = ''
+my_password = 'Criss195!'
 password = loadElement(By.XPATH, '//input[@name="password"]', driver)
 password.send_keys(my_password)
 password.send_keys(Keys.RETURN)
@@ -97,7 +97,7 @@ password.send_keys(Keys.RETURN)
 # searching
 
 search = loadElement(By.XPATH, '//input[@placeholder="Search Twitter"]', driver)
-search.send_keys('@DOT')
+search.send_keys('@NYC_DOT')
 search.send_keys(Keys.RETURN)
 
 # naviagte to lastest tap
@@ -134,7 +134,7 @@ while scrolling:
     while True:
         # scroll down page
         driver.execute_script('window.scrollTo(0, document.body.scrollHeight);')   
-        sleep(3)
+        sleep(1.5)
         current_position = driver.execute_script('return window.pageYOffset;')
         if last_position == current_position:
             scroll_attempt += 1
@@ -143,7 +143,7 @@ while scrolling:
                 scrolling = False
                 break
             else:
-                sleep(3)
+                sleep(1.5)
         else:
             last_position = current_position
             break
