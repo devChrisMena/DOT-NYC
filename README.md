@@ -17,3 +17,26 @@ Automatically fetch text from DOT’s Twitter, Instagram, and Facebook. Classify
 - **Market:** Limited to the social media team at the NYC DOT.
 
 ## Product Spec
+### 1. Crawler Scripts
+
+- [x] Script naviagtes to specified account or page.
+- [x] Script can fetch comments from the specified account or page.
+- [x] Script can fetch data within a given parameter.
+ 
+ ### 2. Neural Network Model
+ 
+ - [x] Model trained.
+ - [x] Model can clasify sentences.
+ - [x] Model can rate sentences.
+
+### 3. Screen Archetypes
+
+- To be determine
+
+### 4. Navigation
+
+**Flow Navigation**
+* Set parameter --> Set functional parameter for script.
+* Specific scripts -- > Specified which scrawler scripts to run.
+* Output --> Text and numerial data
+
