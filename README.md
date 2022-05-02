@@ -43,4 +43,4 @@ Automatically fetch text from DOT’s Twitter, Instagram, and Facebook. Classify
 
 ## Wireframe
 ![WorkFlow Diagram](/Img/Workflow.png)
-
+![Work Breakdown Structure](/Img/Work_breakdown_structure.png)
