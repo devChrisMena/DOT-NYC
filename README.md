@@ -42,6 +42,5 @@ Automatically fetch text from DOT’s Twitter, Instagram, and Facebook. Classify
 * Output --> Text and numerial data
 
 ## Wireframe
-<img src="https://imgur.com/gallery/kMUWwrN" width=500>
-
+![alt text](https://imgur.com/gallery/kMUWwrN)
 
