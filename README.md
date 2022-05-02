@@ -3,8 +3,8 @@
 1. [Overview](#Overview)
 2. [Product Spec](#Product-Spec)
 3. [Schema](#Schema)
-4. [Manual](#Manual)
-5. [Wireframes](#Wireframes)
+4. [Wireframes](#Wireframes)
+5. [Manual](#Manual)
 
 ## Overview
 ### Description
@@ -44,3 +44,15 @@ Automatically fetch text from DOT’s Twitter, Instagram, and Facebook. Classify
 ## Wireframe
 ![WorkFlow Diagram](/Img/Workflow.png)
 ![Work Breakdown Structure](/Img/Work_breakdown_structure.png)
+
+
+## Manual
+
+### 1. GUI
+ * To be written
+
+### 2. Scripts
+ * To be written
+
+### 3. Outputs
+ * To be written
