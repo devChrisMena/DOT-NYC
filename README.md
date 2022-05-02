@@ -4,6 +4,7 @@
 2. [Product Spec](#Product-Spec)
 3. [Schema](#Schema)
 4. [Manual](#Manual)
+5. [Wireframes](#Wireframes)
 
 ## Overview
 ### Description
@@ -39,4 +40,8 @@ Automatically fetch text from DOT’s Twitter, Instagram, and Facebook. Classify
 * Set parameter --> Set functional parameter for script.
 * Specific scripts -- > Specified which scrawler scripts to run.
 * Output --> Text and numerial data
+
+## Wireframe
+<img src="https://imgur.com/a/kMUWwrN" width=500>
+
 
