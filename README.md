@@ -78,4 +78,4 @@ Automatically fetch text from DOT’s Twitter, Instagram, and Facebook. Classify
 
 ### 3. Outputs
 
- * To be written
+* To be written
