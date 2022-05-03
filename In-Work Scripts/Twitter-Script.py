@@ -3,10 +3,9 @@ import csv
 from getpass import getpass
 from time import sleep
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
+from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, TimeoutException
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from datetime import datetime, timedelta
 from selenium.webdriver.support import expected_conditions as EC
@@ -76,33 +75,36 @@ def formatTime(data_time):
         data_time[5:7]), int(data_time[8:10]))
     return dt
 
+def login(user_name, user_pass, browswer):
+    username = loadElement(By.XPATH, '//input[@name="text"]', driver)
+    username.send_keys(user_name)
+    username.send_keys(Keys.RETURN)
+    sleep(1)
+    password = loadElement(By.XPATH, '//input[@name="password"]', driver)
+    password.send_keys(user_pass)
+    password.send_keys(Keys.RETURN)
+
+def search(target, driver):
+    # searching
+    search = loadElement(By.XPATH, '//input[@placeholder="Search Twitter"]', driver)
+    search.send_keys(target)
+    search.send_keys(Keys.RETURN)
+    return search
+
 # create instance of webdriver
-#driver = Chrome('/Users/christophermena/Downloads/chromedriver')
-driver = Chrome()
+driver = Chrome('/Users/christophermena/Downloads/chromedriver')
+#driver = Chrome()
 sleep(1)
 
 # navigate to login screen
 driver.get('https://www.twitter.com/login')
 driver.maximize_window()
 
-username = loadElement(By.XPATH, '//input[@name="text"]', driver)
-username.send_keys('iamcriss_1')
-username.send_keys(Keys.RETURN)
-
-my_password = 'Criss195!'
-password = loadElement(By.XPATH, '//input[@name="password"]', driver)
-password.send_keys(my_password)
-password.send_keys(Keys.RETURN)
-
-# searching
-
-search = loadElement(By.XPATH, '//input[@placeholder="Search Twitter"]', driver)
-search.send_keys('@NYC_DOT')
-search.send_keys(Keys.RETURN)
+login('hexbacon', 'Criss195!', driver)
+search = search('@NYC_DOT', driver)
 
 # naviagte to lastest tap
 lastest = loadElement(By.LINK_TEXT, 'Latest', driver).click()
-
 last_position = driver.execute_script('return window.pageYOffset;')
 scrolling = True
 
