@@ -44,21 +44,25 @@ Automatically fetch text from DOT’s Twitter, Instagram, and Facebook. Classify
 
 **Flow Navigation**
 
-* Set parameter --> Set functional parameter for script.
-* Specific scripts -- > Specified which scrawler scripts to run.
-* Output --> Text and numerial data
+- Set parameter --> Set functional parameter for script.
+- Specific scripts -- > Specified which scrawler scripts to run.
+- Output --> Text and numerial data
 
 ## Wireframe
 
 ![WorkFlow Diagram](/Img/Workflow.png)
 ![Work Breakdown Structure](/Img/Work_breakdown_structure.png)
 
+## Schema
+
+* To be determine
+
 
 ## Manual
 
 ### 1. GUI
 
- * To be written
+* To be written
 
 ### 2. Scripts
 
