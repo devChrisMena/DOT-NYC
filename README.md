@@ -55,14 +55,14 @@ Automatically fetch text from DOT’s Twitter, Instagram, and Facebook. Classify
 
 ## Schema
 
-* To be determine
+- To be determine
 
 
 ## Manual
 
 ### 1. GUI
 
-* To be written
+- To be written
 
 ### 2. Scripts
 
@@ -82,4 +82,4 @@ Automatically fetch text from DOT’s Twitter, Instagram, and Facebook. Classify
 
 ### 3. Outputs
 
-* To be written
+- To be written
