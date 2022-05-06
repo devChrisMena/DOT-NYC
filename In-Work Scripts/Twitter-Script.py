@@ -23,10 +23,13 @@ def getTweetData(card) -> Tuple:
     Extract data from tweet data.
     Takes a tweet card  Selenium WebElement as a parameter
     """
-    username = card.find_element(by=By.XPATH, value='./div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]//a').text
-    handle = card.find_element(by=By.XPATH, value='.//span[contains(text(), "@")]').text
+    #username = card.find_element(by=By.XPATH, value='./div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]//a').text
+    username = loadElement(By.XPATH, './div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]//a', card).text
+    #handle = card.find_element(by=By.XPATH, value='.//span[contains(text(), "@")]').text
+    handle = loadElement(By.XPATH, './/span[contains(text(), "@")]', card).text
     try:
-        postdate = card.find_element(By.XPATH, '//time').get_attribute('datetime')
+        #postdate = card.find_element(By.XPATH, '//time').get_attribute('datetime')
+        postdate = loadElement(By.XPATH, '//time', card).get_attribute('datetime')
     except NoSuchElementException:
         return
     except StaleElementReferenceException:
@@ -34,9 +37,13 @@ def getTweetData(card) -> Tuple:
     comment = card.find_element(By.XPATH, './div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[2]').text
    # response = card.find_element(By.XPATH, './div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[3]').text
     text = comment
-    reply_count = card.find_element(By.XPATH, './/div[@data-testid="reply"]').text
-    retweet_count = card.find_element(By.XPATH, './/div[@data-testid="retweet"]').text
-    like_count = card.find_element(By.XPATH, './/div[@data-testid="like"]').text
+    #reply_count = card.find_element(By.XPATH, './/div[@data-testid="reply"]').text
+    reply_count = loadElement(By.XPATH, './/div[@data-testid="reply"]', card).text
+    #retweet_count = card.find_element(By.XPATH, './/div[@data-testid="retweet"]').text
+    retweet_count = loadElement(By.XPATH, './/div[@data-testid="retweet"]', card).text
+
+    #like_count = card.find_element(By.XPATH, './/div[@data-testid="like"]').text
+    like_count = loadElement(By.XPATH, './/div[@data-testid="like"]', card).text
     
     tweet = (username, handle, postdate, text, reply_count, retweet_count, like_count)
     return tweet
@@ -153,7 +160,8 @@ while scrolling:
 driver.close()
 
 # saving data
-with open('tweet_data.csv', 'w', newline='', encoding='utf-8') as f:
+date_filename = datetime.datetime.now().strftime("%Y_%m_%d-%I_%M_%S_%p") + '.csv' 
+with open(date_filename, 'w', newline='', encoding='utf-8') as f:
     header = ['UserName', 'Handle', 'Timestamp', 'Comments', 'Likes', 'Retweets', 'Text']
     writer = csv.writer(f)
     writer.writerow(header)
