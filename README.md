@@ -71,14 +71,14 @@ Automatically fetch text from DOT’s Twitter, Instagram, and Facebook. Classify
 - Login Account Name: Name of dummy account to use
 - Login Account Password: Password for dummy account to use
 - Target Account: Account or Hashtag to search.
-- Range Date: Given a number of days, only fetch data within current's date and the current's date minus the givem number of days.
+- Range Date: Given a number of days, only fetch data within current's date and the current's date minus the given number of days.
 
  **Instagram** script takes four parameter:
 
 - Login Account Name: Name of dummy account to use
 - Login Account Password: Password for dummy account to use
 - Target Account: Account or Hashtag to search.
-- Range Date: Given a number of days, only fetch data within current's date and the current's date minus the givem number of days.
+- Range Date: Given a number of days, only fetch data within current's date and the current's date minus the given number of days.
 
 ### 3. Outputs
 
