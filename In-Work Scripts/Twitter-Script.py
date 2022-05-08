@@ -3,7 +3,7 @@ import csv
 from getpass import getpass
 from time import sleep
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, TimeoutException
+from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, TimeoutException, ElementNotInteractableException, ElementClickInterceptedException, SessionNotCreatedException, WebDriverException
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -99,7 +99,14 @@ def search(target, driver):
     return search
 
 # create instance of webdriver
-driver = Chrome('/Users/christophermena/Downloads/chromedriver')
+try:
+    driver = Chrome('/Users/christophermena/Downloads/chromedriver')
+    #driver = Chrome()
+except SessionNotCreatedException:
+    print('Update Chrome webdriver!!')
+except WebDriverException:
+    print('No webdriver found')
+sleep(1)
 #driver = Chrome()
 sleep(1)
 
@@ -160,7 +167,7 @@ while scrolling:
 driver.close()
 
 # saving data
-date_filename = datetime.datetime.now().strftime("%Y_%m_%d-%I_%M_%S_%p") + '.csv' 
+date_filename = datetime.datetime.now().strftime("%Y_%m_%d") + '.csv' 
 with open(date_filename, 'w', newline='', encoding='utf-8') as f:
     header = ['UserName', 'Handle', 'Timestamp', 'Comments', 'Likes', 'Retweets', 'Text']
     writer = csv.writer(f)

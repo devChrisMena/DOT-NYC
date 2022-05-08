@@ -1,7 +1,7 @@
 
 from json import load
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, TimeoutException, ElementNotInteractableException, ElementClickInterceptedException
+from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, TimeoutException, ElementNotInteractableException, ElementClickInterceptedException, SessionNotCreatedException, WebDriverException
 from selenium.webdriver import Chrome, Edge
 from selenium.webdriver.common.by import By
 from selenium.webdriver import ActionChains
@@ -91,29 +91,37 @@ def formatTime(data_time):
         data_time[5:7]), int(data_time[8:10]))
     return dt
 
+def login(browser):
+    username = loadElement(By.XPATH, '//input[@name="username"]', driver)
+    username.send_keys('iamcriss_1')
+
+    password = loadElement(By.XPATH, '//input[@name="password"]', driver)
+    password.send_keys('titi020696')
+    password.send_keys(Keys.RETURN)
+
+    save_btm = loadElement(By.XPATH, '//div[@class="cmbtv"]', driver).click()
+    notification_btn = loadElement(By.XPATH, '//div[@class="mt3GC"]', driver).click()
+
+def search(browser):
+    search = loadElement(By.XPATH, '//div[@class=" cTBqC"]', driver).click()
+    search = loadElement(By.XPATH, '//input[@placeholder="Search"]', driver)
+    search.send_keys('@nyc_dot')
 # create instance of webdriver
-#driver = Chrome('/Users/christophermena/Downloads/chromedriver')
-driver = Chrome()
+try:
+    driver = Chrome('/Users/christophermena/Downloads/chromedriver')
+    #driver = Chrome()
+except SessionNotCreatedException:
+    print('Update Chrome webdriver!!')
+except WebDriverException:
+    print('No webdriver found')
 sleep(1)
 
 # navigate to login screen
 driver.get('https://www.instagram.com/')
 driver.maximize_window()
 
-
-username = loadElement(By.XPATH, '//input[@name="username"]', driver)
-username.send_keys('iamcriss_1')
-
-password = loadElement(By.XPATH, '//input[@name="password"]', driver)
-password.send_keys('titi020696')
-password.send_keys(Keys.RETURN)
-
-save_btm = loadElement(By.XPATH, '//div[@class="cmbtv"]', driver).click()
-notification_btn = loadElement(By.XPATH, '//div[@class="mt3GC"]', driver).click()
-
-search = loadElement(By.XPATH, '//div[@class=" cTBqC"]', driver).click()
-search = loadElement(By.XPATH, '//input[@placeholder="Search"]', driver)
-search.send_keys('@nyc_dot')
+login(driver)
+search(driver)
 
 dotpage = loadElement(By.XPATH, '//a[@href="/nyc_dot/"]', driver).click()
 page = loadElement(By.XPATH, '//article[@class="ySN3v"]', driver)
@@ -187,7 +195,8 @@ driver.close()
 
 # saving data
 # (user_name, user_comment, reply_usernames, reply_user_comments)
-with open('post_data.csv', 'w', newline='', encoding='utf-8') as f:
+date_filename = datetime.datetime.now().strftime("%Y_%m_%d") + '.csv' 
+with open(date_filename, 'w', newline='', encoding='utf-8') as f:
     header = ['UserName', 'Comment', 'Reply-Usernames', 'Reply-User-Comments']
     writer = csv.writer(f)
     writer.writerow(header)
