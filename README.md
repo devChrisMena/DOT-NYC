@@ -29,7 +29,7 @@ Automatically fetch text from DOT’s Twitter, Instagram, and Facebook. Classify
 - [x] Script naviagtes to specified account or page.
 - [x] Script can fetch comments from the specified account or page.
 - [x] Script can fetch data within a given parameter.
- 
+
 ### 2. Neural Network Model
 
 - [x] Model trained.
@@ -57,7 +57,6 @@ Automatically fetch text from DOT’s Twitter, Instagram, and Facebook. Classify
 
 - To be determine
 
-
 ## Manual
 
 ### 1. GUI
@@ -68,18 +67,42 @@ Automatically fetch text from DOT’s Twitter, Instagram, and Facebook. Classify
 
  **Twitter** script takes four parameter:
 
-- Login Account Name: Name of dummy account to use
-- Login Account Password: Password for dummy account to use
+- Login Account Name: Name of dummy account to use.
+- Login Account Password: Password for dummy account to use.
 - Target Account: Account or Hashtag to search.
 - Range Date: Given a number of days, only fetch data within current's date and the current's date minus the given number of days.
 
  **Instagram** script takes four parameter:
 
-- Login Account Name: Name of dummy account to use
-- Login Account Password: Password for dummy account to use
+- Login Account Name: Name of dummy account to use.
+- Login Account Password: Password for dummy account to use.
 - Target Account: Account or Hashtag to search.
 - Range Date: Given a number of days, only fetch data within current's date and the current's date minus the given number of days.
 
 ### 3. Outputs
 
 - To be written
+
+### 4. Installation
+
+In order to properly use the software we must follow a series of steps in order for everything to work as intended. Be advice that the program is cross-compatible for all major OS in the market. However, this installation process is specifically for Windows devices.
+
+1. Download and install Python. To download [Python](https://www.python.org/downloads/) from the official site. Please select the lastest version avaiable.
+    - Be advice that your machine must meet the minimun specification to run Python
+
+2. Download and Install the [Chrome](https://www.google.com/chrome/downloads/) web browser.
+    - If alredy install, pleaser update to the lastest build. To do so follow these steps:
+        - Click the 3 dots on the top right corner.
+        - Go to **Help** Section.
+        - Click **About Google Chrome**.
+        - Select option to update.
+    - Find the version of Chrome. To find the version of chrome please follow the steps above.
+
+3. Download and Install Visucal Studio Code. To download [Visual Studio Code](https://code.visualstudio.com/download) click the previous link.
+
+4. Download the Webdriver from Chrome. To download the Webdriver for Chrome:
+    - Find the version of Google Chrome. Please follow step 2 to find Chrome version.
+    - Download the version of Chrome [Webdriver](https://chromedriver.chromium.org/downloads) that corresponds to the version of Chrome installed.
+
+5. Add Webdriver to the **System Variables**.
+    - Search
