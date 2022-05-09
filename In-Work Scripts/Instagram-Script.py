@@ -1,7 +1,7 @@
 
 from json import load
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, TimeoutException, ElementNotInteractableException, ElementClickInterceptedException, SessionNotCreatedException, WebDriverException
+from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, TimeoutException, ElementNotInteractableException, ElementClickInterceptedException, SessionNotCreatedException, WebDriverException, NoSuchWindowException
 from selenium.webdriver import Chrome, Edge
 from selenium.webdriver.common.by import By
 from selenium.webdriver import ActionChains
@@ -35,6 +35,11 @@ def loadElement(by, path, browser):
         return None
     except StaleElementReferenceException:
         return None
+    except TimeoutException:
+        print('Could not connect!')
+        return None
+    except NoSuchWindowException:
+        print('Could not reach element')
 
 def loadElements(by, path, browser):
     """
