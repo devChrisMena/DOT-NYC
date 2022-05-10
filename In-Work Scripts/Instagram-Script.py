@@ -15,7 +15,7 @@ import csv
 import selenium
 import datetime
 
-# Constants and Functions
+# Constants and Variables
 DELAY = 15
 
 target_datetime = datetime.datetime.now(

@@ -1,2 +1,3 @@
-from Scripts import Twitter
-Twitter.start()
+from Scripts import Twitter, Instagram
+
+Instagram.start()
