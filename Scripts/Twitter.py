@@ -23,28 +23,21 @@ def getTweetData(card) -> Tuple:
     Extract data from tweet data.
     Takes a tweet card  Selenium WebElement as a parameter
     """
-    #username = card.find_element(by=By.XPATH, value='./div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]//a').text
     username = loadElement(By.XPATH, './div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]//a', card).text
-    #handle = card.find_element(by=By.XPATH, value='.//span[contains(text(), "@")]').text
     handle = loadElement(By.XPATH, './/span[contains(text(), "@")]', card).text
     try:
-        #postdate = card.find_element(By.XPATH, '//time').get_attribute('datetime')
         postdate = loadElement(By.XPATH, '//time', card).get_attribute('datetime')
     except NoSuchElementException:
         return
     except StaleElementReferenceException:
         return
     comment = card.find_element(By.XPATH, './div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[2]').text
-   # response = card.find_element(By.XPATH, './div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[3]').text
+    #response = card.find_element(By.XPATH, './div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[3]').text
     text = comment
-    #reply_count = card.find_element(By.XPATH, './/div[@data-testid="reply"]').text
     reply_count = loadElement(By.XPATH, './/div[@data-testid="reply"]', card).text
-    #retweet_count = card.find_element(By.XPATH, './/div[@data-testid="retweet"]').text
     retweet_count = loadElement(By.XPATH, './/div[@data-testid="retweet"]', card).text
-
-    #like_count = card.find_element(By.XPATH, './/div[@data-testid="like"]').text
     like_count = loadElement(By.XPATH, './/div[@data-testid="like"]', card).text
-    
+    #replying_to = loadElement(By.XPATH, './')
     tweet = (username, handle, postdate, text, reply_count, retweet_count, like_count)
     return tweet
 
@@ -55,10 +48,8 @@ def loadElement(by, path, browser):
     """
     try:
         element = WebDriverWait(browser, DELAY).until((EC.presence_of_element_located((by, path))))
-        print('Page is read!')
         return element
     except TimeoutError:
-        print('Page too long to load ')
         return None
 
 def loadElements(by, path, browser):
@@ -67,11 +58,9 @@ def loadElements(by, path, browser):
     Returns a list of WebElements
     """
     try:
-        element = WebDriverWait(browser, DELAY).until((EC.presence_of_all_elements_located((by, path))))
-        print('Page is read!')
-        return element
+        elements = WebDriverWait(browser, DELAY).until((EC.presence_of_all_elements_located((by, path))))
+        return elements
     except TimeoutError:
-        print('Page too long to load ')
         return None
 
 def formatTime(data_time):
@@ -101,12 +90,13 @@ def searchFor(target, driver):
 def start():
     # create instance of webdriver
     try:
-        driver = Chrome('/Users/christophermena/Downloads/chromedriver')
-        #driver = Chrome()
+        #driver = Chrome('/Users/christophermena/Downloads/chromedriver')
+        driver = Chrome()
     except SessionNotCreatedException:
         print('Update Chrome webdriver!!')
     except WebDriverException:
         print('No webdriver found')
+        return
     sleep(1)
 
     # navigate to login screen
@@ -167,7 +157,7 @@ def start():
     # saving data
     date_filename = 'Twitter_' + datetime.datetime.now().strftime("%Y_%m_%d") + '.csv' 
     with open(date_filename, 'w', newline='', encoding='utf-8') as f:
-        header = ['UserName', 'Handle', 'Timestamp', 'Comments', 'Likes', 'Retweets', 'Text']
+        header = ['UserName', 'Handle', 'Timestamp', 'Comments', 'Likes', 'Retweets']
         writer = csv.writer(f)
         writer.writerow(header)
         writer.writerows(data)
