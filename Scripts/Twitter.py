@@ -155,7 +155,7 @@ def start():
     driver.close()
 
     # saving data
-    date_filename = 'Twitter_' + datetime.datetime.now().strftime("%Y_%m_%d") + '.csv' 
+    date_filename = 'Twitter_' + datetime.datetime.now().strftime("%Y%m%d") + '.csv' 
     with open(date_filename, 'w', newline='', encoding='utf-8') as f:
         header = ['UserName', 'Handle', 'Timestamp', 'Comments', 'Likes', 'Retweets']
         writer = csv.writer(f)

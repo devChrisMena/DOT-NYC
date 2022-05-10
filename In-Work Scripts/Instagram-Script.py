@@ -12,7 +12,7 @@ from ast import Tuple
 from getpass import getpass
 from time import sleep
 import csv
-import selenium 
+import selenium
 import datetime
 
 # Constants and Functions
@@ -21,14 +21,16 @@ DELAY = 15
 target_datetime = datetime.datetime.now(
 ) - datetime.timedelta(days=int(input('Enter number of days: ') or '30'))
 
+
 def loadElement(by, path, browser):
     """
     Given a By and Path, load element
     Returns WebElement
     """
     try:
-        element = WebDriverWait(browser, DELAY).until((EC.presence_of_element_located((by, path))))
-        print('Page is read!')
+        element = WebDriverWait(browser, DELAY).until(
+            (EC.presence_of_element_located((by, path))))
+        #print('Page is read!')
         return element
     except TimeoutError:
         print('Page too long to load ')
@@ -36,10 +38,13 @@ def loadElement(by, path, browser):
     except StaleElementReferenceException:
         return None
     except TimeoutException:
-        print('Could not connect!')
+        #print('Could not connect!')
         return None
     except NoSuchWindowException:
         print('Could not reach element')
+    except AttributeError:
+        return None
+
 
 def loadElements(by, path, browser):
     """
@@ -47,8 +52,9 @@ def loadElements(by, path, browser):
     Returns a list of WebElements
     """
     try:
-        element = WebDriverWait(browser, DELAY).until((EC.presence_of_all_elements_located((by, path))))
-        print('Page is read!')
+        element = WebDriverWait(browser, DELAY).until(
+            (EC.presence_of_all_elements_located((by, path))))
+        #print('Page is read!')
         return element
     except TimeoutError:
         print('Page too long to load ')
@@ -58,35 +64,24 @@ def loadElements(by, path, browser):
         return None
     except StaleElementReferenceException:
         return None
+
+
 def getPostData(post) -> Tuple:
     """
     Extract data from post data.
     Takes a post Selenium WebElement as a parameter
     """
-    print('Inside getDataPost')
-    user_name = loadElement(By.XPATH, './div[1]/li[1]/div[1]/div[1]/div[2]//h3', post).text
-    user_comment = loadElement(By.XPATH, './div[1]/li[1]/div[1]/div[1]/div[2]/div[1]/span', post).text
+    user_name = loadElement(
+        By.XPATH, './div[1]/li[1]/div[1]/div[1]/div[2]//h3', post).text
+    user_comment = loadElement(
+        By.XPATH, './div[1]/li[1]/div[1]/div[1]/div[2]/div[1]/span', post).text
     time = loadElement(By.XPATH, '//time', post).get_attribute('datetime')
     reply_usernames = []
     reply_user_comments = []
-
-    print((user_name, user_comment, reply_usernames, reply_user_comments))
-    post_data = (user_name, user_comment, reply_usernames, reply_user_comments, time)
-    print('Exiting getDataPost')
+    post_data = (user_name, user_comment, reply_usernames,
+                 reply_user_comments, time)
     return post_data
 
-def loadMoreComments(path, driver):
-    print('Inside loadMoreComments')
-    print('Inside loading')
-    try:
-        load = loadElement(By.XPATH, path, driver)
-    except NoSuchElementException:
-        print('Button not present, exiting')
-        loading = False
-    else:
-        print('Button is present')
-        load.click()
-        return
 
 def formatTime(data_time):
     """
@@ -95,6 +90,7 @@ def formatTime(data_time):
     dt = datetime.datetime(int(data_time[:4]), int(
         data_time[5:7]), int(data_time[8:10]))
     return dt
+
 
 def login(browser):
     username = loadElement(By.XPATH, '//input[@name="username"]', driver)
@@ -105,16 +101,36 @@ def login(browser):
     password.send_keys(Keys.RETURN)
 
     save_btm = loadElement(By.XPATH, '//div[@class="cmbtv"]', driver).click()
-    notification_btn = loadElement(By.XPATH, '//div[@class="mt3GC"]', driver).click()
+    notification_btn = loadElement(
+        By.XPATH, '//div[@class="mt3GC"]', driver).click()
+
 
 def search(browser):
     search = loadElement(By.XPATH, '//div[@class=" cTBqC"]', driver).click()
     search = loadElement(By.XPATH, '//input[@placeholder="Search"]', driver)
     search.send_keys('@nyc_dot')
+
+def loadMoreComments(texts, browser):
+    if texts == None:
+        return None
+    for text in texts:
+        browser.execute_script("arguments[0].scrollIntoView();", text )
+    content = loadElement(By.XPATH, '//div[@class="RnEpo   _Yhr4     "]', driver)
+    texts = loadElements(By.XPATH, './/ul[@class="Mr508 "]', post_content)
+    load_btn = loadElement(By.XPATH, './/div[@class="             qF0y9          Igw0E     IwRSH        YBx95     acqo5   _4EzTm                                                                                                            NUiEW  "]', content)
+    if load_btn != None:
+        print('Click load commetns')
+        load_btn.click()
+        loadMoreComments(texts, browser)
+    return texts
+    
+    
+
+
 # create instance of webdriver
 try:
-    driver = Chrome('/Users/christophermena/Downloads/chromedriver')
-    #driver = Chrome()
+    #driver = Chrome('/Users/christophermena/Downloads/chromedriver')
+    driver = Chrome()
 except SessionNotCreatedException:
     print('Update Chrome webdriver!!')
 except WebDriverException:
@@ -138,13 +154,14 @@ scrolling = True
 post_ids = set()
 
 while scrolling:
-    strips_posts = loadElements(By.XPATH, '//div[@class="Nnq7C weEfm"]', articles)
+    strips_posts = loadElements(
+        By.XPATH, '//div[@class="Nnq7C weEfm"]', articles)
     if strips_posts == None:
         scrolling = False
         break
     for strip in strips_posts[-15:]:
-        print(data)
-        posts = loadElements(By.XPATH, './/div[@class="v1Nh3 kIKUG _bz0w"]', strip)
+        posts = loadElements(
+            By.XPATH, './/div[@class="v1Nh3 kIKUG _bz0w"]', strip)
         if posts == None:
             scrolling = False
             break
@@ -152,19 +169,33 @@ while scrolling:
             try:
                 post.click()
             except ElementNotInteractableException:
-                post_content = loadElement(By.XPATH, '//div[@class="RnEpo   _Yhr4     "]', driver)
-                close_post = loadElement(By.XPATH, './div[1]/button', post_content)
+                post_content = loadElement(
+                    By.XPATH, '//div[@class="RnEpo   _Yhr4     "]', driver)
+                close_post = loadElement(
+                    By.XPATH, './div[1]/button', post_content)
                 close_post.click()
                 break
             except ElementClickInterceptedException:
-                post_content = loadElement(By.XPATH, '//div[@class="RnEpo   _Yhr4     "]', driver)
-                close_post = loadElement(By.XPATH, './div[1]/button', post_content)
+                post_content = loadElement(
+                    By.XPATH, '//div[@class="RnEpo   _Yhr4     "]', driver)
+                close_post = loadElement(
+                    By.XPATH, './div[1]/button', post_content)
+                close_post.click()
+                break 
+            except StaleElementReferenceException:
+                post_content = loadElement(
+                    By.XPATH, '//div[@class="RnEpo   _Yhr4     "]', driver)
+                close_post = loadElement(
+                    By.XPATH, './div[1]/button', post_content)
                 close_post.click()
                 break
-            post_content = loadElement(By.XPATH, '//div[@class="RnEpo   _Yhr4     "]', driver)
+            post_content = loadElement(
+                By.XPATH, '//div[@class="RnEpo   _Yhr4     "]', driver)
             close_post = loadElement(By.XPATH, './div[1]/button', post_content)
-            post_texts = loadElements(By.XPATH, './/ul[@class="Mr508 "]', post_content)
-            #loadMoreComments('button[@class="wpO6b  "]', post_content)
+            post_texts = loadElements(
+                By.XPATH, './/ul[@class="Mr508 "]', post_content)
+            post_texts = loadMoreComments(post_texts, driver)
+            #loadMoreComments('button[@class="wpO6b  "]', post_content, post_texts, driver)
             if post_texts != None:
                 for text_data in post_texts:
                     post_data = getPostData(text_data)
@@ -181,7 +212,8 @@ while scrolling:
     scroll_attempt = 0
     while True:
         # scroll down page
-        driver.execute_script('window.scrollTo(0, document.body.scrollHeight);')   
+        driver.execute_script(
+            'window.scrollTo(0, document.body.scrollHeight);')
         sleep(3)
         current_position = driver.execute_script('return window.pageYOffset;')
         if last_position == current_position:
@@ -200,7 +232,7 @@ driver.close()
 
 # saving data
 # (user_name, user_comment, reply_usernames, reply_user_comments)
-date_filename = datetime.datetime.now().strftime("%Y_%m_%d") + '.csv' 
+date_filename = datetime.datetime.now().strftime("%Y_%m_%d") + '.csv'
 with open(date_filename, 'w', newline='', encoding='utf-8') as f:
     header = ['UserName', 'Comment', 'Reply-Usernames', 'Reply-User-Comments']
     writer = csv.writer(f)
