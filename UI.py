@@ -4,7 +4,7 @@ from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
-from Scripts import Twitter, Instagram
+from Scripts import Twitter, Instagram, Stats
 
 class SayHello(App):
     def build(self):
@@ -32,7 +32,7 @@ class SayHello(App):
         self.window.add_widget(self.range)
         '''
         # text input widget, range
-        self.range = TextInput(multiline=False, padding_y=(15, 15), size_hint=(1, 0.5), hint_text='Days')
+        self.range = TextInput(multiline=False, padding_y=(10, 10), size_hint=(1, 0.5), hint_text='Days')
         self.window.add_widget(self.range)
 
         # button widget
@@ -44,8 +44,12 @@ class SayHello(App):
         self.button2.bind(on_press = self.callback_instagram)
         self.window.add_widget(self.button2)
 
-        self.button2 = Button(text="AI", background_color = '#B22727')
-        self.button2.bind(on_press = self.callback_instagram)
+        self.button2 = Button(text="AI Twitter", background_color = '#B22727')
+        self.button2.bind(on_press = self.callback_ai_tw)
+        self.window.add_widget(self.button2)
+
+        self.button2 = Button(text="AI Instagram", background_color = '#B22727')
+        self.button2.bind(on_press = self.callback_ai_ig)
         self.window.add_widget(self.button2)
 
         return self.window
@@ -56,6 +60,14 @@ class SayHello(App):
 
     def callback_instagram(self, instance):
         Instagram.start(self.range.text)
+        return self.window
+    
+    def callback_ai_tw(self, instnace):
+        Stats.twitterStats()
+        return self.window
+
+    def callback_ai_ig(self, instnace):
+        Stats.instagramStats()
         return self.window
 
 if __name__ == "__main__":

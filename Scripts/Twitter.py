@@ -41,7 +41,7 @@ def getTweetData(card) -> Tuple:
     like_count = loadElement(By.XPATH, './/div[@data-testid="like"]', card).text
     #replying_to = loadElement(By.XPATH, './')
     post_rate = ''
-    tweet = (username, handle, postdate, text, post_rate, reply_count, retweet_count, like_count)
+    tweet = (username, handle, postdate, text, post_rate)
     return tweet
 
 def loadElement(by, path, browser):
@@ -108,7 +108,7 @@ def start(value):
     driver.get('https://www.twitter.com/login')
     driver.maximize_window()
 
-    login('hexbacon', 'Criss195!', driver)
+    login('bot_intern42', 'internbot42', driver)
     search = searchFor('@NYC_DOT', driver)
 
     # naviagte to lastest tap
@@ -162,7 +162,7 @@ def start(value):
     # saving data
     date_filename = 'Twitter_' + datetime.datetime.now().strftime("%Y%m%d") + '.csv' 
     with open(date_filename, 'w', newline='', encoding='utf-8') as f:
-        header = ['UserName', 'Handle', 'Timestamp', 'Comments', 'Rate', 'Likes', 'Retweets']
+        header = ['UserName', 'Handle', 'Timestamp', 'Comments', 'Rate']
         writer = csv.writer(f)
         writer.writerow(header)
         writer.writerows(data)

@@ -16,7 +16,7 @@ import selenium
 import datetime
 
 # Constants and Variables
-DELAY = 15
+DELAY = 5
 data = []
 post_ids = set()
 
@@ -81,8 +81,7 @@ def getPostData(post) -> Tuple:
     time = loadElement(By.XPATH, '//time', post).get_attribute('datetime')
     reply_usernames = []
     reply_user_comments = []
-    post_data = (user_name, user_comment, reply_usernames,
-                 reply_user_comments, time)
+    post_data = (user_name, user_comment, time)
     return post_data
 
 
@@ -97,10 +96,10 @@ def formatTime(data_time):
 
 def login(browser):
     username = loadElement(By.XPATH, '//input[@name="username"]', browser)
-    username.send_keys('iamcriss_1')
+    username.send_keys('bot_intern42')
 
     password = loadElement(By.XPATH, '//input[@name="password"]', browser)
-    password.send_keys('titi020696')
+    password.send_keys('internatsomegoodplace')
     password.send_keys(Keys.RETURN)
 
     save_btm = loadElement(By.XPATH, '//div[@class="cmbtv"]', browser).click()
@@ -116,7 +115,7 @@ def search(browser):
 def loadMoreComments(texts, browser):
     if texts == None:
         return None
-    load_btn = loadElement(By.XPATH, './/div[@class="             qF0y9          Igw0E     IwRSH        YBx95     acqo5   _4EzTm                                                                                                            NUiEW  "]', content)
+    load_btn = loadElement(By.XPATH, '/html/body/div[6]/div[3]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/li/div', browser)
     if load_btn != None:
         print('Click load commetns')
         try:
@@ -203,7 +202,7 @@ def start(value):
                         if post_data:
                             post_id = ''.join(post_data[0])
                             if post_id not in post_ids:
-                                date = post_data[4]
+                                date = post_data[2]
                                 date_pass = not(target_datetime > formatTime(date))
                                 if date_pass:
                                     post_ids.add(post_id)
@@ -232,13 +231,13 @@ def start(value):
     driver.close()
     # saving data
     # (user_name, user_comment, reply_usernames, reply_user_comments)
-    date_filename = datetime.datetime.now().strftime("%Y_%m_%d") + '.csv'
+    date_filename = 'Instagram_' + datetime.datetime.now().strftime("%Y%m%d") + '.csv'
     with open(date_filename, 'w', newline='', encoding='utf-8') as f:
-        header = ['UserName', 'Comment', 'Reply-Usernames', 'Reply-User-Comments']
+        header = ['UserName', 'Comment', 'Timestamp']
         writer = csv.writer(f)
         writer.writerow(header)
         writer.writerows(data)
     print('Complete')
 
 if __name__ == "__main__":
-    start(value = 30)
+    start(value = 10)
