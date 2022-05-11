@@ -7,3 +7,4 @@ selenium
 wget
 tensorflow
 scikit-learn
+kivy
