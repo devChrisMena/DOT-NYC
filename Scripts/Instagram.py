@@ -113,10 +113,6 @@ def search(browser):
 def loadMoreComments(texts, browser):
     if texts == None:
         return None
-    for text in texts:
-        browser.execute_script("arguments[0].scrollIntoView();", text )
-    content = loadElement(By.XPATH, '//div[@class="RnEpo   _Yhr4     "]', browser)
-    texts = loadElements(By.XPATH, './/ul[@class="Mr508 "]', content)
     load_btn = loadElement(By.XPATH, './/div[@class="             qF0y9          Igw0E     IwRSH        YBx95     acqo5   _4EzTm                                                                                                            NUiEW  "]', content)
     if load_btn != None:
         print('Click load commetns')
