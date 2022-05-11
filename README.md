@@ -55,6 +55,14 @@ Automatically fetch text from DOT’s Twitter, Instagram, and Facebook. Classify
 
 ## Schema
 
+### Twitter
+
+| Property      | Type     | Description                                                                                                             |
+|---------------|----------|-------------------------------------------------------------------------------------------------------------------------|
+| name          | String   | user shown name                                                                                                         |
+| username      | String   | unique username for user                                                                                                |
+| timestamp     | String   | time when posted                                                                                                        |
+| comment       |          |                                                                                                                         |
 - To be determine
 
 ## Manual
