@@ -15,8 +15,10 @@ import datetime
 DELAY = 7
 data = []
 tweet_ids = set()
-target_datetime = datetime.datetime.now(
-) - datetime.timedelta(days=int(input('Enter number of days: ') or '30'))
+
+def setDay(value):
+    range = datetime.datetime.now() - datetime.timedelta(days=int(value))
+    return range
 
 def getTweetData(card) -> Tuple:
     """
@@ -87,7 +89,9 @@ def searchFor(target, driver):
     search.send_keys(Keys.RETURN)
     return search
 
-def start():
+def start(value):
+    target_datetime = setDay(value)
+
     # create instance of webdriver
     try:
         #driver = Chrome('/Users/christophermena/Downloads/chromedriver')

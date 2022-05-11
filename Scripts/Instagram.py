@@ -16,8 +16,7 @@ import datetime
 
 # Constants and Variables
 DELAY = 15
-target_datetime = datetime.datetime.now(
-) - datetime.timedelta(days=int(input('Enter number of days: ') or '30'))
+target_datetime = datetime.datetime.now() - datetime.timedelta(days=int(value))
 data = []
 post_ids = set()
 
@@ -125,7 +124,8 @@ def loadMoreComments(texts, browser):
     return texts
     
 # Main function
-def start():
+def start(value):
+    target_datetime = datetime.datetime.now() - datetime.timedelta(days=int(value))
     # create instance of webdriver
     try:
         #driver = Chrome('/Users/christophermena/Downloads/chromedriver')

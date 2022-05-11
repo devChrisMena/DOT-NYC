@@ -4,6 +4,7 @@ from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
+from Scripts import Twitter, Instagram
 
 class SayHello(App):
     def build(self):
@@ -30,6 +31,10 @@ class SayHello(App):
         self.range = TextInput(multiline=False, padding_y=(20, 20), size_hint=(1, 0.5))
         self.window.add_widget(self.range)
         '''
+        # text input widget, range
+        self.range = TextInput(multiline=False, padding_y=(15, 15), size_hint=(1, 0.5), hint_text='Days')
+        self.window.add_widget(self.range)
+
         # button widget
         self.button = Button(text="Twitter", background_color = '#F8CB2E')
         self.button.bind(on_press = self.callback_twitter)
@@ -46,11 +51,11 @@ class SayHello(App):
         return self.window
 
     def callback_twitter(self, instance):
-
+        Twitter.start(self.range.text)
         return self.window
 
     def callback_instagram(self, instance):
-
+        Instagram.start(self.range.text)
         return self.window
 
 if __name__ == "__main__":
