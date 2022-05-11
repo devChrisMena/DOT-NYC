@@ -64,6 +64,14 @@ Automatically fetch text from DOT’s Twitter, Instagram, and Facebook. Classify
 | timestamp     | String   | time when posted                                                                                                                                       |
 | comment       | String   | text containing user's response                                                                                                                        |
 
+### Instagram
+
+| Property      | Type     | Description                                                                                                                                            |
+|---------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| username      | String   | unique username for user                                                                                                                               |
+| timestamp     | String   | time when posted                                                                                                                                       |
+| comment       | String   | text containing user's response                                                                                                                        |
+
 
 
 ## Manual
