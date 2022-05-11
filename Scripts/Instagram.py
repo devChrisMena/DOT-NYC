@@ -1,4 +1,5 @@
 from json import load
+from winreg import SetValue
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, TimeoutException, ElementNotInteractableException, ElementClickInterceptedException, SessionNotCreatedException, WebDriverException, NoSuchWindowException
 from selenium.webdriver import Chrome, Edge
@@ -16,11 +17,14 @@ import datetime
 
 # Constants and Variables
 DELAY = 15
-target_datetime = datetime.datetime.now() - datetime.timedelta(days=int(value))
 data = []
 post_ids = set()
 
 # Helper Functions
+def setDay(value):
+    range = datetime.datetime.now() - datetime.timedelta(days=int(value))
+    return range
+
 def loadElement(by, path, browser):
     """
     Given a By and Path, load element
@@ -125,7 +129,7 @@ def loadMoreComments(texts, browser):
     
 # Main function
 def start(value):
-    target_datetime = datetime.datetime.now() - datetime.timedelta(days=int(value))
+    target_datetime = setDay(value)
     # create instance of webdriver
     try:
         #driver = Chrome('/Users/christophermena/Downloads/chromedriver')
@@ -237,4 +241,4 @@ def start(value):
     print('Complete')
 
 if __name__ == "__main__":
-    start()
+    start(value = 30)
