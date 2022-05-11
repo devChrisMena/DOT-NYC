@@ -57,13 +57,14 @@ Automatically fetch text from DOT’s Twitter, Instagram, and Facebook. Classify
 
 ### Twitter
 
-| Property      | Type     | Description                                                                                                             |
-|---------------|----------|-------------------------------------------------------------------------------------------------------------------------|
-| name          | String   | user shown name                                                                                                         |
-| username      | String   | unique username for user                                                                                                |
-| timestamp     | String   | time when posted                                                                                                        |
-| comment       |          |                                                                                                                         |
-- To be determine
+| Property      | Type     | Description                                                                                                                                            |
+|---------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| name          | String   | user shown name                                                                                                                                        |
+| username      | String   | unique username for user                                                                                                                               |
+| timestamp     | String   | time when posted                                                                                                                                       |
+| comment       | String   | text containing user's response                                                                                                                        |
+
+
 
 ## Manual
 
