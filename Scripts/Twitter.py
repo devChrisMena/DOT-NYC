@@ -40,7 +40,8 @@ def getTweetData(card) -> Tuple:
     retweet_count = loadElement(By.XPATH, './/div[@data-testid="retweet"]', card).text
     like_count = loadElement(By.XPATH, './/div[@data-testid="like"]', card).text
     #replying_to = loadElement(By.XPATH, './')
-    tweet = (username, handle, postdate, text, reply_count, retweet_count, like_count)
+    post_rate = ''
+    tweet = (username, handle, postdate, text, post_rate, reply_count, retweet_count, like_count)
     return tweet
 
 def loadElement(by, path, browser):
@@ -161,11 +162,11 @@ def start(value):
     # saving data
     date_filename = 'Twitter_' + datetime.datetime.now().strftime("%Y%m%d") + '.csv' 
     with open(date_filename, 'w', newline='', encoding='utf-8') as f:
-        header = ['UserName', 'Handle', 'Timestamp', 'Comments', 'Likes', 'Retweets']
+        header = ['UserName', 'Handle', 'Timestamp', 'Comments', 'Rate', 'Likes', 'Retweets']
         writer = csv.writer(f)
         writer.writerow(header)
         writer.writerows(data)
     print('Done')
 
 if __name__ == "__main__":
-    start()
+    start(value = 30)
