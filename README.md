@@ -7,6 +7,7 @@
 3. [Schema](#Schema)
 4. [Wireframes](#Wireframes)
 5. [Manual](#Manual)
+6. [Documentation](#Documentation)
 
 ## Overview
 
@@ -123,3 +124,14 @@ In order to properly use the software we must follow a series of steps in order 
 
 5. Add Webdriver to the **System Variables**.
     - Search
+
+
+## Documentation
+
+### 1. Technology
+
+This program was writen to be versitile across any platform that supports Python and Web browser. Our goal is to create a program that can rely on as little outside packages as possible while remanining future proof and innovative. We decided to use the following technologies for this project:
+
+- 
+
+### 2. Functions

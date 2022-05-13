@@ -123,7 +123,7 @@ def instagramStats():
         writer.writerow(header)
         writer.writerows(data)
 
-    stats_file =  pd.read_csv('tweet_data.csv')
+    stats_file =  pd.read_csv('ig_data.csv')
     p = stats_file['Prediction']
     x = []
 
