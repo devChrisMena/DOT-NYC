@@ -6,7 +6,14 @@ import tarfile
 
 def install(packages):
     for package in packages:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+        try:
+            subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+        except:
+            print('Error')
+
+def uninstall(packages):
+    for package in packages:
+        subprocess.check_call([sys.executable, "-m", "pip", "uninstall", package])
 
 def checkIfFile():
     file_path = os.getcwd()
@@ -28,4 +35,6 @@ def download():
 
 if __name__ == "__main__":
     packages =  ['wget', 'numpy', 'panda', 'seaborn', 'matplotlib', 'jupyterlab', 'selenium', 'tensorflow', 'scikit-learn', 'kivy']
-    install(packages)
+    #packages_mac =  ['wget', 'numpy', 'panda', 'seaborn', 'matplotlib', 'jupyterlab', 'selenium', '--upgrade pip', 'tensorflow-metal', 'scikit-learn', 'kivy']
+
+    uninstall(packages)
