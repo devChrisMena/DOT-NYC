@@ -49,7 +49,7 @@ Automatically fetch text from DOT’s Twitter, Instagram, and Facebook. Classify
 - Specific scripts -- > Specified which scrawler scripts to run.
 - Output --> Text and numerial data
 
-## Wireframe
+## Wireframes
 
 ![WorkFlow Diagram](/Img/Workflow.png)
 ![Work Breakdown Structure](/Img/Work_breakdown_structure.png)

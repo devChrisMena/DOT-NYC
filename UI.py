@@ -4,6 +4,7 @@ from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
+#from numpy import source
 from Scripts import Twitter, Instagram, Stats
 
 class SayHello(App):
@@ -14,23 +15,13 @@ class SayHello(App):
         self.window.size_hint = (0.6, 0.7)
         self.window.pos_hint = {"center_x": 0.5, "center_y": 0.5}
 
+        # Image
+        self.window.add_widget(Image(source="Img/13038.jpg"))
+        '''
         #Label widget
         self.greeting = Label(text="Sentimental Analysis")
         self.window.add_widget(self.greeting)
 
-        '''
-        #text input widget, username
-        self.userName = TextInput(multiline=False, padding_y = (20,20), size_hint = (1, 0.5))
-        self.window.add_widget(self.userName)
-
-        # text input widget, password
-        self.passWord = TextInput(multiline=False, padding_y=(20, 20), size_hint=(1, 0.5))
-        self.window.add_widget(self.passWord)
-
-        # text input widget, range
-        self.range = TextInput(multiline=False, padding_y=(20, 20), size_hint=(1, 0.5))
-        self.window.add_widget(self.range)
-        '''
         # text input widget, range
         self.range = TextInput(multiline=False, padding_y=(10, 10), size_hint=(1, 0.5), hint_text='Days')
         self.window.add_widget(self.range)
@@ -51,23 +42,23 @@ class SayHello(App):
         self.button2 = Button(text="AI Instagram", background_color = '#B22727')
         self.button2.bind(on_press = self.callback_ai_ig)
         self.window.add_widget(self.button2)
-
+        '''
         return self.window
 
     def callback_twitter(self, instance):
-        Twitter.start(self.range.text)
+        #Twitter.start(self.range.text)
         return self.window
 
     def callback_instagram(self, instance):
-        Instagram.start(self.range.text)
+        #Instagram.start(self.range.text)
         return self.window
     
     def callback_ai_tw(self, instnace):
-        Stats.twitterStats()
+        #Stats.twitterStats()
         return self.window
 
     def callback_ai_ig(self, instnace):
-        Stats.instagramStats()
+        #Stats.instagramStats()
         return self.window
 
 if __name__ == "__main__":
