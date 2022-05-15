@@ -12,7 +12,8 @@ def checkIfFile():
     # check if file exist:
     if not os.path.exists('aclImdb_v1.tar.gz'):
         print('File does not exist ')
-    print(directory)
+    else:
+        print('File exists')
 
 if __name__ == "__main__":
     checkIfFile()
