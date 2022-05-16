@@ -3,11 +3,12 @@
 ## Table of Content
 
 1. [Overview](#Overview)
-2. [Product Spec](#Product-Spec)
-3. [Schema](#Schema)
-4. [Wireframes](#Wireframes)
-5. [Manual](#Manual)
-6. [Documentation](#Documentation)
+2. [Usage](#Usage)
+3. [Product Spec](#Product-Spec)
+4. [Schema](#Schema)
+5. [Wireframes](#Wireframes)
+6. [Manual](#Manual)
+7. [Documentation](#Documentation)
 
 ## Overview
 
@@ -22,6 +23,10 @@ Automatically fetch text from DOT’s Twitter, Instagram, and Facebook. Classify
 - **Computer:** This app would be primarily developed for Window devices. Functionality could be limited to Window devices.
 - **Story:** Automate feedback gathering from a social group. Users can execute scripts to optain infomartion from their particular following. Optain statistical data to further understand their sentiment. Clasify sentences on wether they are positve, negative or neutral.
 - **Market:** Limited to the social media team at the NYC DOT.
+
+## Usage
+
+Given login information for Twitter or Instagram, run one of the scripts to fetch data to the target account.
 
 ## Product Spec
 
@@ -145,6 +150,8 @@ In order to properly use the software we must follow a series of steps in order 
 
 This program was writen to be versitile across any platform that supports Python and Web browser. Our goal is to create a program that can rely on as little outside packages as possible while remanining future proof and innovative. We decided to use the following technologies for this project:
 
-- 
+1. **Selinum** is a software and python package capable of automating browsers. We use Selenium to navigate the different sites and read its content. We can then take the content and save it as need it. This process only relies on having the selenium package and web browser.
+
+2. 
 
 ### 2. Functions
