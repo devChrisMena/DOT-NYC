@@ -2,39 +2,22 @@ import subprocess
 import os
 import os.path
 import sys
-import tarfile
 
 def install(packages):
     for package in packages:
         try:
             subprocess.check_call([sys.executable, "-m", "pip", "install", package])
         except:
-            print('Error')
+            print('Could not install {}'.format(package))
 
 def uninstall(packages):
     for package in packages:
         subprocess.check_call([sys.executable, "-m", "pip", "uninstall", package])
 
-def checkIfFile():
-    file_path = os.getcwd()
-    # check if file exist:
-    if not os.path.exists('aclImdb_v1.tar.gz'):
-        print('File does not exist ')
-    else:
-        print('File exists')
 
-def download():
-    try:
-        import wget
-    except:
-        print('Error')
-    url = 'http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz'
-    file_get = wget.download(url)
-    file_tar = tarfile.open('aclImdb_v1.tar.gz')
-    file_tar.extractall()
+
 
 if __name__ == "__main__":
-    packages =  ['wget', 'numpy', 'panda', 'seaborn', 'matplotlib', 'jupyterlab', 'selenium', 'tensorflow', 'scikit-learn', 'kivy']
+    packages =  ['wget', 'numpy', 'panda', 'seaborn', 'matplotlib', 'jupyterlab', 'selenium', 'tensorflow', 'scikit-learn', 'kivy', 'tqdm']
     #packages_mac =  ['wget', 'numpy', 'panda', 'seaborn', 'matplotlib', 'jupyterlab', 'selenium', '--upgrade pip', 'tensorflow-metal', 'scikit-learn', 'kivy']
-
-    uninstall(packages)
+    install(packages)
