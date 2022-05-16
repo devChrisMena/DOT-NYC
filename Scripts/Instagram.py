@@ -1,5 +1,4 @@
 from json import load
-from winreg import SetValue
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, TimeoutException, ElementNotInteractableException, ElementClickInterceptedException, SessionNotCreatedException, WebDriverException, NoSuchWindowException
 from selenium.webdriver import Chrome, Edge
@@ -131,8 +130,8 @@ def start(value):
     target_datetime = setDay(value)
     # create instance of webdriver
     try:
-        #driver = Chrome('/Users/christophermena/Downloads/chromedriver')
-        driver = Chrome()
+        driver = Chrome('/Users/christophermena/Downloads/chromedriver')
+        #driver = Chrome()
     except SessionNotCreatedException:
         print('Update Chrome webdriver!!')
     except WebDriverException:

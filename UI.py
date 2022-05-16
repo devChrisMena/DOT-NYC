@@ -4,8 +4,7 @@ from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
-#from numpy import source
-#from Scripts import Twitter, Instagram, Stats
+from Scripts import Twitter, Instagram, Stats
 
 class SayHello(App):
     def build(self):
@@ -45,7 +44,7 @@ class SayHello(App):
         return self.window
 
     def callback_twitter(self, instance):
-        #Twitter.start(self.range.text)
+        Twitter.start(self.range.text)
         return self.window
 
     def callback_instagram(self, instance):
