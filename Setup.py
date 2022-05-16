@@ -4,6 +4,10 @@ import os.path
 import sys
 
 def install(packages):
+    '''
+    Given a list of packages, installs packaging to the machine
+    :param packages: list of packages name
+    '''
     for package in packages:
         try:
             subprocess.check_call([sys.executable, "-m", "pip", "install", package])
@@ -11,6 +15,10 @@ def install(packages):
             print('Could not install {}'.format(package))
 
 def uninstall(packages):
+    '''
+    Given a list of packages, loops through the list to uninstall the given packages
+    :param packages: list of packages name
+    '''
     for package in packages:
         subprocess.check_call([sys.executable, "-m", "pip", "uninstall", package])
 

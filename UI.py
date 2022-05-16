@@ -5,7 +5,7 @@ from kivy.uix.image import Image
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 #from numpy import source
-from Scripts import Twitter, Instagram, Stats
+#from Scripts import Twitter, Instagram, Stats
 
 class SayHello(App):
     def build(self):
@@ -19,7 +19,7 @@ class SayHello(App):
         self.window.add_widget(Image(source="Img/NYCDOT.png"))
 
         #Label widget
-        self.greeting = Label(text="Sentimental Analysis", font_size=20, color='#0c9b67')
+        self.greeting = Label(text="Sentimental Analysis", font_size=30, color='#0c9b67')
         self.window.add_widget(self.greeting)
         # text input widget, range
         self.range = TextInput(multiline=False, padding_y=(10, 10), size_hint=(1, 0.5), hint_text='Days')
