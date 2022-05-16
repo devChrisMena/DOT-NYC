@@ -7,6 +7,8 @@ import wget
 def download():
     url = 'http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz'
     file_get = wget.download(url)
+
+def extract():
     file_tar = tarfile.open('aclImdb_v1.tar.gz')
     file_tar.extractall()
 
@@ -25,3 +27,4 @@ def checkIfFile():
 
 if __name__ == '__main__':
     checkIfFile()
+    extract()
