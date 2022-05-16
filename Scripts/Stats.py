@@ -7,15 +7,6 @@ import matplotlib.pyplot as plt
 import datetime
 import csv
 
-def downloadFile():
-    url = 'http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz'
-    file_get = wget.download(url)
-
-def extractFile():
-    file_tar = tarfile.open('aclImdb_v1.tar.gz')
-    file_tar.extractall()
-
-
 # Vocabulary: All words used, starting by the most frequent
 with open('aclImdb/imdb.vocab', encoding="UTF-8") as f:
     vocab = [word.rstrip() for word in f]

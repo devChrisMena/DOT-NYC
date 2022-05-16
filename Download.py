@@ -1,11 +1,8 @@
 import shutil
-import subprocess
 import os
 import os.path
-import sys
 import tarfile
 import wget
-import tqdm
 
 def download():
     print('Error')
