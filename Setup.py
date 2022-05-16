@@ -15,8 +15,6 @@ def uninstall(packages):
         subprocess.check_call([sys.executable, "-m", "pip", "uninstall", package])
 
 
-
-
 if __name__ == "__main__":
     packages =  ['wget', 'numpy', 'panda', 'seaborn', 'matplotlib', 'jupyterlab', 'selenium', 'tensorflow', 'scikit-learn', 'kivy', 'tqdm']
     #packages_mac =  ['wget', 'numpy', 'panda', 'seaborn', 'matplotlib', 'jupyterlab', 'selenium', '--upgrade pip', 'tensorflow-metal', 'scikit-learn', 'kivy']

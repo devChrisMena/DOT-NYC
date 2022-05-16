@@ -12,20 +12,19 @@ class SayHello(App):
         self.window = GridLayout()
         #add widgets to window
         self.window.cols = 1
-        self.window.size_hint = (0.6, 0.7)
+        self.window.size_hint = (0.7, 0.9)
         self.window.pos_hint = {"center_x": 0.5, "center_y": 0.5}
 
         # Image
-        self.window.add_widget(Image(source="Img/13038.jpg"))
-        '''
-        #Label widget
-        self.greeting = Label(text="Sentimental Analysis")
-        self.window.add_widget(self.greeting)
+        self.window.add_widget(Image(source="Img/NYCDOT.png"))
 
+        #Label widget
+        self.greeting = Label(text="Sentimental Analysis", font_size=20, color='#0c9b67')
+        self.window.add_widget(self.greeting)
         # text input widget, range
         self.range = TextInput(multiline=False, padding_y=(10, 10), size_hint=(1, 0.5), hint_text='Days')
         self.window.add_widget(self.range)
-
+   
         # button widget
         self.button = Button(text="Twitter", background_color = '#F8CB2E')
         self.button.bind(on_press = self.callback_twitter)
@@ -35,14 +34,14 @@ class SayHello(App):
         self.button2.bind(on_press = self.callback_instagram)
         self.window.add_widget(self.button2)
 
-        self.button2 = Button(text="AI Twitter", background_color = '#B22727')
+        self.button2 = Button(text="Analyze Twitter", background_color = '#B22727')
         self.button2.bind(on_press = self.callback_ai_tw)
         self.window.add_widget(self.button2)
 
-        self.button2 = Button(text="AI Instagram", background_color = '#B22727')
+        self.button2 = Button(text="Analyze Instagram", background_color = '#B22727')
         self.button2.bind(on_press = self.callback_ai_ig)
         self.window.add_widget(self.button2)
-        '''
+
         return self.window
 
     def callback_twitter(self, instance):

@@ -169,4 +169,4 @@ def start(value):
     print('Done')
 
 if __name__ == "__main__":
-    start(value = 30)
+    start(value = 5)
