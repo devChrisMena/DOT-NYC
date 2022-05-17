@@ -176,6 +176,9 @@ built on top of the Python programming language.
 #### Twitter
 
 ```setDay(value)``` sets the date range when given a value in days. Date range is consist of the current day minus the value in days.
+
 ```getTweetData(card)``` takes a webelement corresponding to the twitter post information. Returns a tuple with the desired information.
+
 ```loadElement(by, path, browser)``` takes a By, Path and Browser. Loads a page within a given time frame. Returns webelement when loaded successfully or error if not.
+
 ```loadElements(by, path, browser)`` takes a By, Path and Browser. Loads all element within a page  given time frame. Returns a list of webelements when loaded successfully or error if not.
