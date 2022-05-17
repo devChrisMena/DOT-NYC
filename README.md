@@ -130,8 +130,10 @@ In order to properly use the software we must follow a series of steps in order 
 
 5. Add Webdriver to the **System Variables**.
     - Search for **Edit System Variable** on Windows.
-    - Click on ........
+    - Click on **Enviroment Variables**
+    - Select **Path** under the **System variables** and click edit
     - Add the directory on which the **Webdriver** is located to the system PATH.
+    - Save
 
 6. Download Software Package
     - Clone Repo 
