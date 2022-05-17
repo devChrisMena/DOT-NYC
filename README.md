@@ -181,4 +181,4 @@ built on top of the Python programming language.
 
 ```loadElement(by, path, browser)``` takes a By, Path and Browser. Loads a page within a given time frame. Returns webelement when loaded successfully or error if not.
 
-```loadElements(by, path, browser)`` takes a By, Path and Browser. Loads all element within a page  given time frame. Returns a list of webelements when loaded successfully or error if not.
+```loadElements(by, path, browser)``` takes a By, Path and Browser. Loads all element within a page  given time frame. Returns a list of webelements when loaded successfully or error if not.
