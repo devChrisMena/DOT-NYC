@@ -106,7 +106,7 @@ def login(browser):
         By.XPATH, '//div[@class="mt3GC"]', browser).click()
 
 
-def search(browser):
+def searchFor(browser):
     search = loadElement(By.XPATH, '//div[@class=" cTBqC"]', browser).click()
     search = loadElement(By.XPATH, '//input[@placeholder="Search"]', browser)
     search.send_keys('@nyc_dot')
@@ -130,7 +130,6 @@ def start(value):
     target_datetime = setDay(value)
     # create instance of webdriver
     try:
-        #driver = Chrome('/Users/christophermena/Downloads/chromedriver')
         driver = Chrome()
     except SessionNotCreatedException:
         print('Update Chrome webdriver!!')
@@ -143,7 +142,7 @@ def start(value):
     driver.maximize_window()
 
     login(driver)
-    search(driver)
+    searchFor(driver)
 
     dotpage = loadElement(By.XPATH, '//a[@href="/nyc_dot/"]', driver).click()
     page = loadElement(By.XPATH, '//article[@class="ySN3v"]', driver)
@@ -194,7 +193,6 @@ def start(value):
                 post_texts = loadElements(
                     By.XPATH, './/ul[@class="Mr508 "]', post_content)
                 post_texts = loadMoreComments(post_texts, driver)
-                #loadMoreComments('button[@class="wpO6b  "]', post_content, post_texts, driver)
                 if post_texts != None:
                     for text_data in post_texts:
                         post_data = getPostData(text_data)
