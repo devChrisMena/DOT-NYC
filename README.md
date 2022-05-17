@@ -152,8 +152,13 @@ In order to properly use the software we must follow a series of steps in order 
 
 This program was writen to be versitile across any platform that supports Python and Web browser. Our goal is to create a program that can rely on as little outside packages as possible while remanining future proof and innovative. We decided to use the following technologies for this project:
 
-1. **Selinum** is a software and python package capable of automating browsers. We use Selenium to navigate the different sites and read its content. We can then take the content and save it as need it. This process only relies on having the selenium package and web browser.
+1. [Selinum](https://www.selenium.dev/) is a software and python package capable of automating browsers. We use Selenium to navigate the different sites and read its content. We can then take the content and save it as need it. This process only relies on having the selenium package and web browser.
 
-2. 
+2. [Tensorflow](https://www.tensorflow.org/) is an end-to-end open source platform for machine learning. It has a comprehensive, flexible ecosystem of tools, libraries and community resources that lets researchers push the state-of-the-art in ML and developers easily build and deploy ML powered applications.
+
+3. [Pandas](https://pandas.pydata.org/) is a fast, powerful, flexible and easy to use open source data analysis and manipulation tool,
+built on top of the Python programming language.
+
+4. [Matplotlib](https://matplotlib.org/) is a comprehensive library for creating static, animated, and interactive visualizations in Python. Matplotlib makes easy things easy and hard things possible.
 
 ### 2. Functions

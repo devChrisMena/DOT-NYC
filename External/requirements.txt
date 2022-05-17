@@ -1,0 +1,10 @@
+numpy
+pandas
+seaborn
+matplotlib
+jupyterlab
+selenium
+wget
+tensorflow
+scikit-learn
+kivy
