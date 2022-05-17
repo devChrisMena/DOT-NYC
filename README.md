@@ -15,7 +15,7 @@
 ### Description
 
 Create an application that would capture the sentiment of customers automatically and efficiently, thus reducing the resources needed in order to complete this task.
-Automatically fetch text from DOT’s Twitter, Instagram, and Facebook. Classify the opinion(positive, negative and neutral) of the text using NLP techniques
+Automatically fetch text from DOT’s Twitter and Instagram. Classify the opinion(positive, negative and neutral) of the text using NLP techniques
 
 ### App Evaluation
 
@@ -104,7 +104,17 @@ Given login information for Twitter or Instagram, run one of the scripts to fetc
 
 ### 3. Outputs
 
-- To be written
+Each scripts is ouputs two **CSV** files which corresponds to platform to whcih data was feteched.
+
+- One **CSV** file corresponds to the data fetch from the social media platform. It contains the following data:
+    - Username
+    - Optionally for twitter the user's name
+    - Timestamp
+    - Comment
+- Second **CSV** file contains  data process by the Deep Learning Model such as:
+    - Comment fetched
+    - Rating for comment
+- Optionally user can decide if to save infographics such as Bar Plot or Pie Chart when running the scripts
 
 ### 4. Installation
 
