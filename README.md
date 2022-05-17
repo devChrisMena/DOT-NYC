@@ -177,16 +177,16 @@ built on top of the Python programming language.
 
 ```setDay(value)``` sets the date range when given a value in days. Date range is consist of the current day minus the value in days.
 
-```getTweetData(card)``` takes a webelement corresponding to the twitter post information. Returns a tuple with the desired information.
+```getTweetData(card)``` takes a WebElement corresponding to the twitter post information. Returns a tuple with the desired information.
 
-```loadElement(by, path, browser)``` takes a By, Path and Browser. Loads a page within a given time frame. Returns webelement when loaded successfully or error if not.
+```loadElement(by, path, browser)``` takes a By, Path and Browser. Loads a page within a given time frame. Returns WebElement when loaded successfully or error if not.
 
-```loadElements(by, path, browser)``` takes a By, Path and Browser. Loads all element within a page  given time frame. Returns a list of webelements when loaded successfully or error if not.
+```loadElements(by, path, browser)``` takes a By, Path and Browser. Loads all element within a page  given time frame. Returns a list of WebElements when loaded successfully or error if not.
 
 ```formatTime(data_time)``` takes a string in the form of a datatime and formats it and returns a string  as MM/DD/YYYY.
 
 ```login(user_name, user_pass, driver)``` takes a strings as usern_name and user_password corresponding to the loging credential of an account. Takes a browser as the driver. Logs into the Twitter account using credentials.
 
-```searchFor(target, driver)``` takes a targer account or hastag and a browser as the driver. Search for the target. Returns webelement corresponding to the targer.
+```searchFor(target, driver)``` takes a targer account or hastag and a browser as the driver. Search for the target. Returns WebElement corresponding to the targer.
 
-```loadMoreComments(texts, browser)``` exclusive to Instagram takes the comment section webelement of a post and tries to load all comments replying to the original post. Returns list of all loaded comments.
+```loadMoreComments(texts, browser)``` exclusive to Instagram takes the comment section WebElement of a post and tries to load all comments replying to the original post. Returns list of all loaded comments WebElement.

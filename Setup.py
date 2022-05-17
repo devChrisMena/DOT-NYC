@@ -1,6 +1,4 @@
 import subprocess
-import os
-import os.path
 import sys
 
 def install(packages):

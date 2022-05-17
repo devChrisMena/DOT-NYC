@@ -1,7 +1,5 @@
 from tensorflow.keras.models import load_model
-import wget
 import re
-import tarfile
 import pandas as pd
 import matplotlib.pyplot as plt
 import datetime
