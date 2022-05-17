@@ -181,7 +181,7 @@ built on top of the Python programming language.
 
 ```loadElement(by, path, browser)``` takes a By, Path and Browser. Loads a page within a given time frame. Returns WebElement when loaded successfully or error if not.
 
-```loadElements(by, path, browser)``` takes a By, Path and Browser. Loads all element within a page  given time frame. Returns a list of WebElements when loaded successfully or error if not.
+```loadElements(by, path, browser)``` takes a By(supported locator), Path(path to the desired element) and Browser. Loads all element within a page  given time frame. Returns a list of WebElements when loaded successfully or error if not.
 
 ```formatTime(data_time)``` takes a string in the form of a datatime and formats it and returns a string  as MM/DD/YYYY.
 
