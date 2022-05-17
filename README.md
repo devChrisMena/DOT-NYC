@@ -173,7 +173,7 @@ built on top of the Python programming language.
 
 ### 2. Functions
 
-#### Twitter
+#### 1. Twitter
 
 ```setDay(value)``` sets the date range when given a value in days. Date range is consist of the current day minus the value in days.
 
