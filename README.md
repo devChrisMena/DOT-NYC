@@ -137,7 +137,7 @@ In order to properly use the software we must follow a series of steps in order 
 
 4. Download the Webdriver from Chrome. To download the Webdriver for Chrome:
     - Find the version of Google Chrome. Please follow step 2 to find Chrome version.
-    ![Showing how to get vversion](https://i.imgur.com/mlF1PKZ.gif).
+    ![Showing how to get vversion](/Img/GVersion.gif).
     - Download the version of [Chrome Webdriver](https://chromedriver.chromium.org/downloads) that corresponds to the version of Chrome installed.
     - Save file on a separate directory.
 
