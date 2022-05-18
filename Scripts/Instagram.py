@@ -113,12 +113,11 @@ def searchFor(browser):
     search.send_keys('@nyc_dot')
 
 def loadMoreComments(texts, browser):
-    #sleep(1)
+    sleep(1)
     if texts == None:
         return None
     load_btn = loadElement(By.XPATH, '/html/body/div[6]/div[3]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/li/div', browser)
     if load_btn != None:
-        print('Click load commetns')
         try:
             load_btn.click()
         except StaleElementReferenceException:
@@ -242,7 +241,7 @@ def start(value):
         writer.writerows(data)
     print('Complete')
 
-    csv_file = pd.read_csv(date_filename)
+    csv_file = pd.read_csv(date_filename, index_col=0)
     csv_file.dropna(subset=["Comment"], inplace=True)
     csv_file.to_csv(date_filename)
 

@@ -169,7 +169,7 @@ def start(value):
         writer.writerows(data)
     print('Done')
 
-    csv_file = pd.read_csv(date_filename)
+    csv_file = pd.read_csv(date_filename, index_col=0)
     csv_file.dropna(subset=["Comments"], inplace=True)
     csv_file.to_csv(date_filename)
 

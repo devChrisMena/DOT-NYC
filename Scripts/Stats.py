@@ -1,3 +1,4 @@
+from operator import index
 from tensorflow.keras.models import load_model
 import re
 import pandas as pd
@@ -37,7 +38,10 @@ def bow_onehot_vector(tokens):
 
 def twitterStats():
     filename = 'Twitter_' + datetime.datetime.now().strftime("%Y%m%d") + '.csv'
-    twitter = pd.read_csv(filename)
+    try:
+        twitter = pd.read_csv(filename, index_col=0)
+    except:
+        print('File does not ')
     # stats data
     data = []
     sentiment = load_model('saved_model/model.h5')
@@ -78,33 +82,31 @@ def twitterStats():
             negative +=1
 
     twitter['Prediction'] = x
+    twitter.loc[:, ~twitter.columns.str.contains('^Unnamed')]
     twitter.to_csv(filename)
 
     try:
         os.remove('tweet_data.csv')
     except:
         print('No file')
-    fig = plt.figure()
 
     labels = ['Positive', 'Neutral', 'Negative']
     val = [positive, neutral, negative]
     explode = (0, 0.1, 0,)
 
-    bar_fig = 'Twitter_Bar_Plot' + datetime.datetime.now().strftime("%Y%m%d")
+    bar_fig = 'Twitter_Bar_Plot' + datetime.datetime.now().strftime("%Y%m%d") + '.png'
     plt.bar(labels, val)
     plt.show()
-    plt.savefig(bar_fig)
 
-    pie_fig = 'Twitter_Pie_Chart' + datetime.datetime.now().strftime("%Y%m%d")
+    pie_fig = 'Twitter_Pie_Chart' + datetime.datetime.now().strftime("%Y%m%d") + '.png'
     plt.figure(figsize=(3, 3))
     plt.pie(val, explode=explode, labels=labels, autopct='%1.1f%%', shadow=True, startangle=90)
     plt.show()
-    plt.savefig(pie_fig)
 
 
 def instagramStats():
     filename = 'Instagram_' + datetime.datetime.now().strftime("%Y%m%d") + '.csv'
-    ig = pd.read_csv(filename)
+    ig = pd.read_csv(filename, index_col=0)
     # stats data
     data = []
     sentiment = load_model('saved_model/model.h5')
@@ -152,22 +154,18 @@ def instagramStats():
         else:
             negative +=1
 
-    fig = plt.figure()
-
     labels = ['Positive', 'Neutral', 'Negative']
     val = [positive, neutral, negative]
     explode = (0, 0.1, 0,)
 
-    bar_fig = 'Instagram_Bar_Plot' + datetime.datetime.now().strftime("%Y%m%d")
+    bar_fig = 'Instagram_Bar_Plot' + datetime.datetime.now().strftime("%Y%m%d") + '.png'
     plt.bar(labels, val)
     plt.show()
-    plt.savefig(bar_fig)
 
-    pie_fig = 'Instagram_Pie_Chart' + datetime.datetime.now().strftime("%Y%m%d")
+    pie_fig = 'Instagram_Pie_Chart' + datetime.datetime.now().strftime("%Y%m%d") + '.png'
     plt.figure(figsize=(3, 3))
     plt.pie(val, explode=explode, labels=labels, autopct='%1.1f%%', shadow=True, startangle=90)
     plt.show()
-    plt.savefig(pie_fig)
 
 if __name__ == "__main__":
     instagramStats()
