@@ -46,7 +46,7 @@ For more details check [Manual](#Manual) for more details.
 
 ### 3. Screen Archetypes
 
-- To be determine
+- Creation - Select one of the scripts from a simple GUI interface to fetch and save data from your desired platform.
 
 ### 4. Navigation
 
@@ -86,7 +86,13 @@ For more details check [Manual](#Manual) for more details.
 
 ### 1. GUI
 
-- To be written
+The **GUI** is built for simple use. All functional parameters are set and ready to run. The GUI has the following components:
+
+- Text Input: This input takes a number representing days. It is used to calculate a range date in which the range consist of the current date minus the given value in days.
+- Twitter Button: This button runs our Twitter script to fetch data.
+- Instagram Button: This button runs our Instagram script to fetch data.
+- Analyze Twitter: Runs our script model to evaluate a CSV file corresponding to the data fetch for the Twitter script.
+- Analyze Instagram: Runs our script model to evaluate a CSV file corresponding to the data fetch for the Instagram script.
 
 ### 2. Scripts
 

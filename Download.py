@@ -33,7 +33,6 @@ def checkIfFile():
     # check if file exist:
     if not os.path.exists('aclImdb_v1.tar.gz'):
         download()
-        print('File does not exist ')
     else:
         print('File exists')
 
