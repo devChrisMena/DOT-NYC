@@ -9,7 +9,7 @@ def download():
     Downloads sentiment library
     '''
     url = 'http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz'
-    Sfile_get = wget.download(url)
+    file_get = wget.download(url)
 
 def extract():
     '''
@@ -37,5 +37,5 @@ def checkIfFile():
         print('File exists')
 
 if __name__ == '__main__':
-    checkIfFile()
+    #checkIfFile()
     extract()

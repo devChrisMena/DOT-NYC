@@ -1,4 +1,5 @@
 from json import load
+from types import NoneType
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, TimeoutException, ElementNotInteractableException, ElementClickInterceptedException, SessionNotCreatedException, WebDriverException, NoSuchWindowException
 from selenium.webdriver import Chrome, Edge
@@ -74,8 +75,11 @@ def getPostData(post) -> Tuple:
     Extract data from post data.
     Takes a post Selenium WebElement as a parameter
     """
-    user_name = loadElement(
+    try: 
+        user_name = loadElement(
         By.XPATH, './div[1]/li[1]/div[1]/div[1]/div[2]//h3', post).text
+    except:
+        return None
     user_comment = loadElement(
         By.XPATH, './div[1]/li[1]/div[1]/div[1]/div[2]/div[1]/span', post).text
     time = loadElement(By.XPATH, '//time', post).get_attribute('datetime')
