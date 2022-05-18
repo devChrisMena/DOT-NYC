@@ -132,7 +132,7 @@ In order to properly use the software we must follow a series of steps in order 
     - Be advice that your machine must meet the minimun specification to run Python
 
 2. Download and Install the [Chrome](https://www.google.com/chrome/downloads/) web browser.
-    - If alredy install, pleaser update to the lastest build. To do so follow these steps:
+    - If alredy installed, please update to the lastest build. To do so follow these steps:
         - Click the 3 dots on the top right corner.
         - Go to **Help** Section.
         - Click **About Google Chrome**.
