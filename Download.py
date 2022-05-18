@@ -9,7 +9,7 @@ def download():
     Downloads sentiment library
     '''
     url = 'http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz'
-    file_get = wget.download(url)
+    Sfile_get = wget.download(url)
 
 def extract():
     '''
