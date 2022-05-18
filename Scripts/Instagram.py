@@ -113,6 +113,7 @@ def searchFor(browser):
     search.send_keys('@nyc_dot')
 
 def loadMoreComments(texts, browser):
+    #sleep(1)
     if texts == None:
         return None
     load_btn = loadElement(By.XPATH, '/html/body/div[6]/div[3]/div/article/div/div[2]/div/div/div[2]/div[1]/ul/li/div', browser)
@@ -123,7 +124,11 @@ def loadMoreComments(texts, browser):
         except StaleElementReferenceException:
             return texts
         else:
-            loadMoreComments(texts, browser)
+            try:
+                loadMoreComments(texts, browser)
+            except:
+                print('Too many recursions')
+                return texts
     return texts
     
 # Main function
@@ -199,7 +204,7 @@ def start(value):
                         post_data = getPostData(text_data)
                         if post_data:
                             post_id = ''.join(post_data[0])
-                            if post_id not in post_ids and not all(post_data):
+                            if post_id not in post_ids:
                                 date = post_data[2]
                                 date_pass = not(target_datetime > formatTime(date))
                                 if date_pass:

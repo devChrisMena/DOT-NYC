@@ -4,6 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import datetime
 import csv
+import os
 
 # Vocabulary: All words used, starting by the most frequent
 with open('aclImdb/imdb.vocab', encoding="UTF-8") as f:
@@ -62,7 +63,7 @@ def twitterStats():
     x = []
 
     for y in p:
-        x.append(y[1:-1])
+        x.append(float(y[1:-1]))
 
     neutral = 0
     positive = 0
@@ -76,18 +77,30 @@ def twitterStats():
         else:
             negative +=1
 
+    twitter['Prediction'] = x
+    twitter.to_csv(filename)
+
+    try:
+        os.remove('tweet_data.csv')
+    except:
+        print('No file')
     fig = plt.figure()
 
     labels = ['Positive', 'Neutral', 'Negative']
     val = [positive, neutral, negative]
     explode = (0, 0.1, 0,)
 
+    bar_fig = 'Twitter_Bar_Plot' + datetime.datetime.now().strftime("%Y%m%d")
     plt.bar(labels, val)
     plt.show()
+    plt.savefig(bar_fig)
 
+    pie_fig = 'Twitter_Pie_Chart' + datetime.datetime.now().strftime("%Y%m%d")
     plt.figure(figsize=(3, 3))
     plt.pie(val, explode=explode, labels=labels, autopct='%1.1f%%', shadow=True, startangle=90)
     plt.show()
+    plt.savefig(pie_fig)
+
 
 def instagramStats():
     filename = 'Instagram_' + datetime.datetime.now().strftime("%Y%m%d") + '.csv'
@@ -117,11 +130,19 @@ def instagramStats():
     x = []
 
     for y in p:
-        x.append(y[1:-1])
+        x.append(float(y[1:-1]))
 
     neutral = 0
     positive = 0
     negative = 0
+
+    ig['Prediction'] = x
+    ig.to_csv(filename)
+
+    try:
+        os.remove('ig_data.csv')
+    except:
+        print('No file')
 
     for value in x:
         if float(value) >= 0.7:
@@ -137,12 +158,16 @@ def instagramStats():
     val = [positive, neutral, negative]
     explode = (0, 0.1, 0,)
 
+    bar_fig = 'Instagram_Bar_Plot' + datetime.datetime.now().strftime("%Y%m%d")
     plt.bar(labels, val)
     plt.show()
+    plt.savefig(bar_fig)
 
+    pie_fig = 'Instagram_Pie_Chart' + datetime.datetime.now().strftime("%Y%m%d")
     plt.figure(figsize=(3, 3))
     plt.pie(val, explode=explode, labels=labels, autopct='%1.1f%%', shadow=True, startangle=90)
     plt.show()
+    plt.savefig(pie_fig)
 
 if __name__ == "__main__":
     instagramStats()
