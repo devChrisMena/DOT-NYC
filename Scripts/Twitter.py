@@ -1,5 +1,6 @@
 from ast import Tuple
 import csv
+from fileinput import filename
 from getpass import getpass
 from time import sleep
 from selenium.webdriver.common.keys import Keys
@@ -10,6 +11,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime, timedelta
 import datetime
+import pandas as pd
 
 # constans and variables
 DELAY = 7
@@ -41,7 +43,7 @@ def getTweetData(card) -> Tuple:
     like_count = loadElement(By.XPATH, './/div[@data-testid="like"]', card).text
     #replying_to = loadElement(By.XPATH, './')
     post_rate = ''
-    tweet = (username, handle, postdate, text, post_rate)
+    tweet = (username, handle, postdate, text)
     return tweet
 
 def loadElement(by, path, browser):
@@ -128,7 +130,7 @@ def start(value):
                 date = tweet[2]
                 date_pass = not(target_datetime > formatTime(date))
                 # if id not in tweet_ids
-                if tweet_id not in tweet_ids:
+                if tweet_id not in tweet_ids and tweet[3] != None or tweet[3] != '':
                     # add it to tweet_ids
                     tweet_ids.add(tweet_id)
                     data.append(tweet)
@@ -161,11 +163,15 @@ def start(value):
     # saving data
     date_filename = 'Twitter_' + datetime.datetime.now().strftime("%Y%m%d") + '.csv' 
     with open(date_filename, 'w', newline='', encoding='utf-8') as f:
-        header = ['UserName', 'Handle', 'Timestamp', 'Comments', 'Rate']
+        header = ['UserName', 'Handle', 'Timestamp', 'Comments']
         writer = csv.writer(f)
         writer.writerow(header)
         writer.writerows(data)
     print('Done')
+
+    csv_file = pd.read_csv(date_filename)
+    csv_file.dropna(subset=["Comments"], inplace=True)
+    csv_file.to_csv(date_filename)
 
 if __name__ == "__main__":
     start(value = 5)

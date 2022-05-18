@@ -13,6 +13,7 @@ from time import sleep
 import csv
 import selenium
 import datetime
+import pandas as pd
 
 # Constants and Variables
 DELAY = 5
@@ -198,7 +199,7 @@ def start(value):
                         post_data = getPostData(text_data)
                         if post_data:
                             post_id = ''.join(post_data[0])
-                            if post_id not in post_ids:
+                            if post_id not in post_ids and not all(post_data):
                                 date = post_data[2]
                                 date_pass = not(target_datetime > formatTime(date))
                                 if date_pass:
@@ -235,6 +236,10 @@ def start(value):
         writer.writerow(header)
         writer.writerows(data)
     print('Complete')
+
+    csv_file = pd.read_csv(date_filename)
+    csv_file.dropna(subset=["Comment"], inplace=True)
+    csv_file.to_csv(date_filename)
 
 if __name__ == "__main__":
     start(value = 10)

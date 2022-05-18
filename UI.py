@@ -48,15 +48,15 @@ class SayHello(App):
         return self.window
 
     def callback_instagram(self, instance):
-        #Instagram.start(self.range.text)
+        Instagram.start(self.range.text)
         return self.window
     
     def callback_ai_tw(self, instnace):
-        #Stats.twitterStats()
+        Stats.twitterStats()
         return self.window
 
     def callback_ai_ig(self, instnace):
-        #Stats.instagramStats()
+        Stats.instagramStats()
         return self.window
 
 if __name__ == "__main__":
