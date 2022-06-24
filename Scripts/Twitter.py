@@ -97,7 +97,8 @@ def start(value):
 
     # create instance of webdriver
     try:
-        driver = Chrome()
+        #driver = Chrome()
+        driver = Chrome('/Users/christophermena/Downloads/chromedriver')
     except SessionNotCreatedException:
         print('Update Chrome webdriver!!')
     except WebDriverException:
